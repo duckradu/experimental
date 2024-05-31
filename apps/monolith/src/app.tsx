@@ -7,7 +7,7 @@ import { Suspense } from "solid-js";
 
 import "virtual:uno.css";
 
-import "./styles/app.css";
+import "~/styles/app.css";
 
 export default function App() {
   return (
