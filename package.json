@@ -1,0 +1,15 @@
+{
+  "name": "experimental",
+  "description": "",
+  "version": "0.0.0",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build:monolith": "pnpm --filter monolith build-and-migrate",
+    "start:monolith": "pnpm --filter monolith start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "radu.dascalu@pm.me"
+}
