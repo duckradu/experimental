@@ -25,5 +25,8 @@
   "[typescript]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+
+  "unocss.root": "apps/monolith",
+  "unocss.autocomplete.matchType": "fuzzy"
 }
