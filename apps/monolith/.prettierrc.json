@@ -1,0 +1,4 @@
+{
+  "importOrder": ["^*.css", "^~/styles/*.css", "^[./]"],
+  "importOrderSortSpecifiers": true
+}
