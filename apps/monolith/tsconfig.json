@@ -14,7 +14,7 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "types": ["vinxi/client"],
+    "types": ["vinxi/client", "unplugin-icons/types/solid"],
 
     // Emit
     "noEmit": true,
