@@ -1,4 +1,11 @@
 export const paths = {
+  notFound: "/404",
+
+  auth: {
+    signUp: "/sign-up",
+    signIn: "/sign-in",
+  },
+
   actor: (a_pid: string) => {
     const a_root = `/a/${a_pid}`;
 
