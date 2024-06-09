@@ -77,4 +77,41 @@ export default defineConfig({
       "2xl": "calc(var(--radius) + 4px)",
     },
   },
+  rules: [
+    [
+      /^p(x|y|r|l|t|b)?-layout$/,
+      ([, dir], { theme }) => {
+        switch (dir) {
+          case "x":
+            return {
+              "padding-left": theme.spacing.xs,
+              "padding-right": theme.spacing.xs,
+            };
+          case "y":
+            return {
+              "padding-top": theme.spacing.xs,
+              "padding-bottom": theme.spacing.xs,
+            };
+          case "r":
+            return {
+              "padding-right": theme.spacing.xs,
+            };
+          case "l":
+            return {
+              "padding-left": theme.spacing.xs,
+            };
+          case "t":
+            return {
+              "padding-top": theme.spacing.xs,
+            };
+          case "b":
+            return {
+              "padding-bottom": theme.spacing.xs,
+            };
+          default:
+            return { padding: theme.spacing.xs };
+        }
+      },
+    ],
+  ],
 });
