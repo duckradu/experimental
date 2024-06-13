@@ -18,6 +18,7 @@
     "db:studio": "drizzle-kit studio --config=src/config/db.ts"
   },
   "dependencies": {
+    "@modular-forms/solid": "^0.21.0",
     "@solid-primitives/context": "^0.2.3",
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.13.3",
