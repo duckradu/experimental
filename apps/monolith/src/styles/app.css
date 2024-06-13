@@ -17,14 +17,14 @@
   --secondary: var(--muted);
   --secondary-foreground: var(--muted-foreground);
 
-  /* --brand: 273 100% 50%;
+  --brand: 273 100% 50%;
   --brand-foreground: var(--background);
 
   --accent: var(--brand);
   --accent-foreground: var(--brand-foreground);
 
   --destructive: 0 98% 44%;
-  --destructive-foreground: 210 40% 98%; */
+  --destructive-foreground: 210 40% 98%;
 
   --border: var(--muted);
   --input: var(--muted);
