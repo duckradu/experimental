@@ -1,10 +1,12 @@
 import { A, RouteSectionProps } from "@solidjs/router";
-import { Show } from "solid-js";
+import { For, Show } from "solid-js";
+import { Dynamic } from "solid-js/web";
 
+import { AWithState } from "~/components/a-with-state";
 import { AppFooter } from "~/components/app-footer";
 import { Icon } from "~/components/ui/icon";
 
-import { useAuth } from "~/context/authentication";
+import { useAuth } from "~/providers/authentication";
 
 export type PlatformLayoutProps = RouteSectionProps;
 
@@ -34,10 +36,16 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
               href="/"
               class="flex justify-center items-center gap-3 px-3 pt-1 pb-2 w-13 h-13 hover:bg-muted rounded-full"
             >
-              <Icon.logo.solid class="w-7 h-7 shrink-0" />
+              <Icon.logo.bold class="w-7 h-7 shrink-0" />
             </A>
 
-            <div>Nav items</div>
+            <div>
+              <PrimaryNavigation />
+
+              <Show when={actor()} fallback={<AuthNavigation />}>
+                ACTOR MENU
+              </Show>
+            </div>
           </div>
         </div>
       </aside>
@@ -54,12 +62,103 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
           <div>
             <div>
               <AppFooter />
-            </div>
 
-            <Show when={actor()}>CREATE NEW POST</Show>
+              <Show when={actor()}>CREATE NEW POST</Show>
+            </div>
           </div>
         </div>
       </aside>
     </div>
+  );
+}
+
+function PrimaryNavigation() {
+  return (
+    <nav class="grid group/primary-nav">
+      <For each={usePrimaryNavigationItems()}>
+        {(item) => <NavigationItem {...item} />}
+      </For>
+    </nav>
+  );
+}
+
+function usePrimaryNavigationItems(): NavigationLinkItemWithStateIcon[] {
+  return [
+    {
+      displayText: "Home",
+      href: "/",
+      icon: {
+        active: Icon.home.smile.bold,
+        inactive: Icon.home.smile.outline,
+      },
+    },
+    // Temporary placeholder items
+    // {
+    //   displayText: "News",
+    //   href: "/news",
+    //   icon: {
+    //     active: Icon.news.solid,
+    //     inactive: Icon.news.outline,
+    //   },
+    // },
+    {
+      displayText: "Explore",
+      href: "/explore",
+      icon: {
+        active: Icon.compass.bold,
+        inactive: Icon.compass.outline,
+      },
+    },
+    {
+      displayText: "Shop",
+      href: "/shop",
+      icon: {
+        active: Icon.shop.bold,
+        inactive: Icon.shop.outline,
+      },
+    },
+  ];
+}
+
+function AuthNavigation() {
+  return (
+    <nav class="grid group/auth-nav">
+      <NavigationItem
+        displayText="Sign in"
+        href="/sign-in"
+        icon={{ active: Icon.login.bold, inactive: Icon.login.outline }}
+      />
+      <NavigationItem
+        displayText="Sign up"
+        href="/sign-up"
+        icon={{ active: Icon.userPlus.bold, inactive: Icon.userPlus.outline }}
+      />
+    </nav>
+  );
+}
+
+function NavigationItem(props: NavigationLinkItemWithStateIcon) {
+  return (
+    <AWithState
+      href={props.href}
+      class="flex py-1 group"
+      activeClass="font-semibold"
+      end
+    >
+      {({ isActive }) => (
+        <div class="inline-flex items-center gap-3 rounded-full p-3 group-hover:bg-muted">
+          <Dynamic
+            component={isActive() ? props.icon.active : props.icon.inactive}
+            classList={{
+              "w-7 h-7 shrink-0": true,
+              "text-accent": isActive(),
+            }}
+          />
+          <span class="pr-2 text-xl hidden opacity-0 transition-opacity lg:inline-flex group-hover/container:opacity-100">
+            {props.displayText}
+          </span>
+        </div>
+      )}
+    </AWithState>
   );
 }
