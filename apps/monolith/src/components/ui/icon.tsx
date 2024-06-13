@@ -1,6 +1,7 @@
 import LogoSolid from "~icons/local/logo-solid";
 import SolarCompassBold from "~icons/solar/compass-bold";
 import SolarCompassOutline from "~icons/solar/compass-outline";
+import SolarDangerTriangleBold from "~icons/solar/danger-triangle-bold";
 import SolarHomeSmileBold from "~icons/solar/home-smile-bold";
 import SolarHomeSmileOutline from "~icons/solar/home-smile-outline";
 import SolarLoginBold from "~icons/solar/login-bold";
@@ -15,6 +16,11 @@ export const Icon = {
   logo: { bold: LogoSolid },
 
   spinner: SolarTrafficLineDuotone,
+  danger: {
+    triangle: {
+      bold: SolarDangerTriangleBold,
+    },
+  },
 
   home: {
     smile: {
