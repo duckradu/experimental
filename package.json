@@ -3,10 +3,14 @@
   "description": "",
   "version": "0.0.0",
   "scripts": {
+    "prepare": "husky",
     "preinstall": "npx only-allow pnpm",
     "build:monolith": "pnpm --filter monolith build-and-migrate",
     "start:monolith": "pnpm --filter monolith start",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11"
   },
   "engines": {
     "node": ">=20"
