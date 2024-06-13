@@ -9,7 +9,7 @@ import "virtual:uno.css";
 
 import { PageTitle } from "~/components/page-title";
 
-import { AuthenticationProvider } from "~/context/authentication";
+import { AuthenticationProvider } from "~/providers/authentication";
 
 import "~/styles/app.css";
 
