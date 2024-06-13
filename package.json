@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "node .husky/install.mjs",
     "preinstall": "npx only-allow pnpm",
-    "build:monolith": "pnpm --filter monolith build-and-migrate",
+    "build:monolith": "pnpm --filter monolith build",
     "start:monolith": "pnpm --filter monolith start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
