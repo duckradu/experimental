@@ -1,5 +1,17 @@
+import {
+  GenericIssue,
+  InferInput,
+  ObjectSchema,
+  flatten,
+  safeParseAsync,
+} from "valibot";
+
+type GenericIssueFlatErrorMessage = {
+  readonly [x: string]: [string, ...string[]];
+};
+
 export type RPCResponse<
-  TValidationErrors extends Record<string, string> | null,
+  TValidationErrors extends GenericIssueFlatErrorMessage | null,
   TError = unknown,
   TData = unknown,
 > =
@@ -44,18 +56,14 @@ export function rpcErrorResponse<TError extends { message: string }>(
   };
 }
 
-// export function rpcValidationErrorResponse(
-//   errors: SchemaIssues
-// ): RPCResponse<Record<string, string>, null, undefined> {
-//   return {
-//     data: undefined,
-//     error: null,
-//     validationErrors: Object.fromEntries(
-//       errors.map((error) => [
-//         error.path?.map((item) => item.key).join(".") || "global",
-//         error.message,
-//       ])
-//     ),
-//     success: false,
-//   };
-// }
+export function rpcValidationErrorResponse(
+  errors: [GenericIssue, ...GenericIssue[]],
+): RPCResponse<GenericIssueFlatErrorMessage, null, undefined> {
+  return {
+    data: undefined,
+    error: null,
+    validationErrors:
+      (flatten(errors).nested as GenericIssueFlatErrorMessage) || null,
+    success: false,
+  };
+}
