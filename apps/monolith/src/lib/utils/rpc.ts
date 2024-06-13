@@ -6,9 +6,9 @@ import {
   safeParseAsync,
 } from "valibot";
 
-type GenericIssueFlatErrorMessage = {
-  readonly [x: string]: [string, ...string[]];
-};
+import { to } from "~/lib/utils/common";
+
+type GenericIssueFlatErrorMessage = Record<string, string[]>;
 
 export type RPCResponse<
   TValidationErrors extends GenericIssueFlatErrorMessage | null,
@@ -65,5 +65,51 @@ export function rpcValidationErrorResponse(
     validationErrors:
       (flatten(errors).nested as GenericIssueFlatErrorMessage) || null,
     success: false,
+  };
+}
+
+// TODO: Finish types & functionality
+export function createRPC<
+  In extends ObjectSchema<any, any>,
+  Out extends ObjectSchema<any, any>,
+  HandlerReturn extends unknown,
+>(config: {
+  input?: In;
+  output?: Out;
+  preHandler?: [];
+  handler: (input: InferInput<In>) => Promise<HandlerReturn>;
+}) {
+  return async (input: InferInput<In>) => {
+    "use server";
+
+    if (input) {
+      if (config.input) {
+        const parsed = await safeParseAsync(config.input, input);
+
+        if (!parsed.success) {
+          return rpcValidationErrorResponse(parsed.issues);
+        }
+      }
+    }
+
+    // TODO: Run prehandlers
+
+    const [err, result] = await to(config.handler(input));
+
+    if (err) {
+      return rpcErrorResponse(err);
+    }
+
+    if (config.output) {
+      const parsed = await safeParseAsync(config.output, result);
+
+      if (!parsed.success) {
+        return rpcValidationErrorResponse(parsed.issues);
+      }
+
+      return rpcSuccessResponse(parsed.output);
+    }
+
+    return rpcSuccessResponse(result);
   };
 }
