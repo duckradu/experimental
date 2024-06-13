@@ -26,9 +26,7 @@ Create a `.env` or `.env.local` and copy the content from `.env.example`, replac
   pnpm db:seed
 ```
 
->
 > Run `pnpm db:studio` to start `drizzle-studio` with the default config.
->
 
 ## Running the monolith
 
@@ -37,3 +35,11 @@ Once you have all the dependencies installed and the docker services are up, run
 ### Visit the app
 
 If everything is configured correctly, visit [localhost:3000](http://localhost:3000) where you should see the Kameleon home page. If you seeded the database, you should be able to use one of the seed accounts to sign in to an actor's profile.
+
+## Development
+
+### Generating a Database schema barrel import file
+
+Remember to update the schemas barrel import file `(src/lib/db/schema.ts)` whenever a new database schema is added to the app `(src/lib/api/**/*.schema.ts)`.
+
+> Run `pnpm db:generate:schema-barrel` to generate a new `src/lib/db/schema.ts` file.
