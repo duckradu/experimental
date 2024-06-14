@@ -4,6 +4,7 @@
     "~/components/ui/.*",
     "~/lib/db",
     "~/lib/api/*",
+    "~/lib/utils/*",
     "~/config/*",
     "^*.css",
     "^~/styles/*.css",
