@@ -2,6 +2,9 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "~/components/ui/.*",
+    "~/lib/db",
+    "~/lib/api/*",
+    "~/config/*",
     "^*.css",
     "^~/styles/*.css",
     "^[./]"

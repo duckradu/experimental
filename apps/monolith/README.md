@@ -43,3 +43,10 @@ If everything is configured correctly, visit [localhost:3000](http://localhost:3
 Remember to update the schemas barrel import file `(src/lib/db/schema.ts)` whenever a new database schema is added to the app `(src/lib/api/**/*.schema.ts)`.
 
 > Run `pnpm db:generate:schema-barrel` to generate a new `src/lib/db/schema.ts` file.
+
+## TODO
+
+- [ ] Figure out why local prettier config isn't taken into account
+- [ ] Figure out why prettier plugin `importOrder` isn't triggering
+- [ ] Add prettier as a devDep & run it on `lint-staged`
+- [ ] Add command to typecheck app?
