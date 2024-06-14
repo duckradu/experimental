@@ -78,7 +78,7 @@ const signInAction = action(async (payload: SignInSchemaInput) => {
   }
 
   return rpcSuccessResponse(matchingActor);
-});
+}, "authentication:sign-in");
 
 export type SignInFormProps = Pick<SignInSchemaInput, "redirectTo">;
 
