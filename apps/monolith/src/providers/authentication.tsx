@@ -1,13 +1,14 @@
 import { createContextProvider } from "@solid-primitives/context";
 import { cache, createAsync } from "@solidjs/router";
 
+import * as AuthenticationService from "~/lib/api/authentication/authentication.service";
+
 import { rpcErrorResponse, rpcSuccessResponse } from "~/lib/utils/rpc";
 
 const routeData = cache(async () => {
   "use server";
 
-  // TODO: Replace with AuthService
-  const authenticatedActor = null;
+  const authenticatedActor = AuthenticationService.getSessionActor();
 
   if (authenticatedActor) {
     return rpcSuccessResponse(authenticatedActor);
