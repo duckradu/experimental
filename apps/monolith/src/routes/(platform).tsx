@@ -1,12 +1,23 @@
-import { A, RouteSectionProps } from "@solidjs/router";
+import { A, RouteSectionProps, action, useAction } from "@solidjs/router";
 import { For, Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 import { AWithState } from "~/components/a-with-state";
 import { AppFooter } from "~/components/app-footer";
+import { Button } from "~/components/ui/button";
 import { Icon } from "~/components/ui/icon";
 
 import { useAuth } from "~/providers/authentication";
+
+import * as AuthenticationService from "~/lib/api/authentication/authentication.service";
+
+const signOutAction = action(async () => {
+  "use server";
+
+  const session = await AuthenticationService.getSession();
+
+  await session.update({ actorId: undefined });
+}, "authentication:sign-out");
 
 export type PlatformLayoutProps = RouteSectionProps;
 
@@ -43,7 +54,19 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
               <PrimaryNavigation />
 
               <Show when={actor()} fallback={<AuthNavigation />}>
-                ACTOR MENU
+                {(() => {
+                  const triggerAction = useAction(signOutAction);
+
+                  return (
+                    <nav>
+                      <ul>
+                        <li>
+                          <Button onClick={triggerAction}>Sign out</Button>
+                        </li>
+                      </ul>
+                    </nav>
+                  );
+                })()}
               </Show>
             </div>
           </div>
