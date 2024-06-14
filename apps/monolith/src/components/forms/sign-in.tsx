@@ -1,4 +1,4 @@
-import { createForm, valiForm } from "@modular-forms/solid";
+import { SubmitHandler, createForm, valiForm } from "@modular-forms/solid";
 import { action, redirect, useAction } from "@solidjs/router";
 import * as argon2 from "argon2";
 import { eq } from "drizzle-orm";
@@ -82,15 +82,18 @@ const signInAction = action(async (payload: SignInSchemaInput) => {
 
 export type SignInFormProps = Pick<SignInSchemaInput, "redirectTo">;
 
-export function SignInForm(_: SignInFormProps) {
+export function SignInForm(props: SignInFormProps) {
   const [, { Form, Field }] = createForm<SignInSchemaInput>({
     validate: valiForm(SignInSchema),
   });
   const triggerAction = useAction(signInAction);
 
-  // TODO: Pass props.redirectTo
+  const handleSubmit: SubmitHandler<SignInSchemaInput> = (values) => {
+    triggerAction({ ...values, redirectTo: props.redirectTo });
+  };
+
   return (
-    <Form class="grid gap-2" onSubmit={triggerAction}>
+    <Form class="grid gap-2" onSubmit={handleSubmit}>
       <Field name="email">
         {renderField((store, props) => (
           <Input
