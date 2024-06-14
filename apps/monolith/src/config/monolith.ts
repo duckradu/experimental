@@ -1,3 +1,5 @@
+import { SessionConfig } from "vinxi/http";
+
 import { paths } from "~/lib/paths";
 
 export const appConfig = {
@@ -9,3 +11,7 @@ export const appConfig = {
   helpRecordLink: paths.actor("kameleon").record("help").root,
   sendFeedbackRecordLink: paths.actor("kameleon").record("send-feedback").root,
 };
+
+export const sessionConfig = {
+  password: process.env.SESSION_SECRET,
+} as SessionConfig;
