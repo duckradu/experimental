@@ -8,7 +8,7 @@ import { rpcErrorResponse, rpcSuccessResponse } from "~/lib/utils/rpc";
 const routeData = cache(async () => {
   "use server";
 
-  const authenticatedActor = AuthenticationService.getSessionActor();
+  const authenticatedActor = await AuthenticationService.getSessionActor();
 
   if (authenticatedActor) {
     return rpcSuccessResponse(authenticatedActor);
