@@ -19,6 +19,28 @@ export const paths = {
           root: r_root,
         };
       },
+
+      conversations: (c_pid?: string) => {
+        const c_root = `${a_root}/c`;
+
+        const pathSegments = [c_root];
+
+        if (typeof c_pid !== "undefined") {
+          pathSegments.push(c_pid);
+        }
+
+        return pathSegments.join("/");
+      },
+
+      notifications: `${a_root}/notifications`,
+
+      bookmarks: `${a_root}/bookmarks`,
+
+      storage: `${a_root}/storage`,
+
+      settings: {
+        root: `${a_root}/settings`,
+      },
     };
   },
 };
