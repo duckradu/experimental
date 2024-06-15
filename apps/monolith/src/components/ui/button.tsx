@@ -1,4 +1,4 @@
-import { JSX, Show, splitProps } from "solid-js";
+import { ComponentProps, Show, splitProps } from "solid-js";
 import { tv, type VariantProps } from "tailwind-variants";
 
 import { Icon } from "~/components/ui/icon";
@@ -59,7 +59,7 @@ export const buttonVariants = tv({
 });
 
 export interface ButtonProps
-  extends JSX.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends ComponentProps<"button">,
     VariantProps<typeof buttonVariants> {}
 
 export function Button(originalProps: ButtonProps) {

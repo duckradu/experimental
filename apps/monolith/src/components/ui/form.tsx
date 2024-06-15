@@ -1,11 +1,11 @@
-import { JSX, ParentProps, Show, splitProps } from "solid-js";
-import { tv, type VariantProps } from "tailwind-variants";
 import {
   FieldElementProps,
   FieldPath,
   FieldStore,
   FieldValues,
 } from "@modular-forms/solid";
+import { ComponentProps, JSX, ParentProps, Show, splitProps } from "solid-js";
+import { tv, type VariantProps } from "tailwind-variants";
 
 import { Icon } from "~/components/ui/icon";
 
@@ -72,7 +72,7 @@ export const inputVariants = tv({
 });
 
 export interface InputProps
-  extends Omit<JSX.InputHTMLAttributes<HTMLInputElement>, "size">,
+  extends Omit<ComponentProps<"input">, "size">,
     VariantProps<typeof inputVariants> {}
 
 export function Input(originalProps: InputProps) {

@@ -1,6 +1,6 @@
-import { JSX, mergeProps } from "solid-js";
+import { ComponentProps, mergeProps } from "solid-js";
 
-export interface SeparatorProps extends JSX.HTMLAttributes<HTMLDivElement> {
+export interface SeparatorProps extends ComponentProps<"div"> {
   orientation?: "horizontal" | "vertical";
 }
 

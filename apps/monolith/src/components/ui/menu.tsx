@@ -77,10 +77,7 @@ export type MenuItem = MenuItemCommonProps &
       }
     | {
         anchorProps?: never;
-        buttonProps: Omit<
-          JSX.ButtonHTMLAttributes<HTMLButtonElement>,
-          "children"
-        >;
+        buttonProps: Omit<ComponentProps<"button">, "children">;
         component?: never;
       }
     | {
