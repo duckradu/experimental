@@ -24,6 +24,7 @@
     "@solidjs/router": "^0.13.3",
     "@solidjs/start": "^1.0.1",
     "@unocss/reset": "^0.60.3",
+    "@zag-js/avatar": "^0.57.0",
     "@zag-js/menu": "^0.57.0",
     "@zag-js/solid": "^0.57.0",
     "argon2": "^0.40.3",

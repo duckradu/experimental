@@ -35,6 +35,9 @@ importers:
       '@unocss/reset':
         specifier: ^0.60.3
         version: 0.60.3
+      '@zag-js/avatar':
+        specifier: ^0.57.0
+        version: 0.57.0
       '@zag-js/menu':
         specifier: ^0.57.0
         version: 0.57.0
@@ -2618,6 +2621,16 @@ packages:
 
   /@zag-js/anatomy@0.57.0:
     resolution: {integrity: sha512-/FehkCk70OmKvvB8ic3ULaCYph+gDnFsi+sEmGWNHavdEKnjG5EcfeFZEci7JkwM9sUkaaDw87toJIoI4+02Rw==}
+    dev: false
+
+  /@zag-js/avatar@0.57.0:
+    resolution: {integrity: sha512-JABswWhqqeYE8cC8vYkEG3I71jJquHPhCQlYKNSx3Hhz7i+SsmJlReRreP8rC8TI5bqqGAI03NgT9pK9wNE8fw==}
+    dependencies:
+      '@zag-js/anatomy': 0.57.0
+      '@zag-js/core': 0.57.0
+      '@zag-js/dom-query': 0.57.0
+      '@zag-js/types': 0.57.0
+      '@zag-js/utils': 0.57.0
     dev: false
 
   /@zag-js/core@0.57.0:
