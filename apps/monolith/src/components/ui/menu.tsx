@@ -15,9 +15,11 @@ import {
   splitProps,
 } from "solid-js";
 import { Dynamic, Portal } from "solid-js/web";
-import { VariantProps, tv } from "tailwind-variants";
+import { ClassValue, VariantProps, tv } from "tailwind-variants";
 
 import { AWithState, AWithStateProps } from "~/components/a-with-state";
+
+import { createMergedVariantSlotClasses } from "~/lib/utils/common";
 
 export const menuVariants = tv({
   slots: {
@@ -85,7 +87,9 @@ export type MenuItem = MenuItemCommonProps &
         anchorProps?: never;
         buttonProps?: never;
         component: (
-          props: MenuItemCommonProps & { itemClassAccessor: Accessor<string> },
+          props: MenuItemCommonProps & {
+            itemClassAccessor: Accessor<ClassValue>;
+          },
         ) => JSX.Element;
       }
   );
@@ -134,14 +138,19 @@ export function Menu(originalProps: MenuProps) {
     "portalProps",
   ]);
 
+  const mergedVariantSlotClasses = createMergedVariantSlotClasses(
+    menuVariants,
+    variantProps,
+  );
+
   const content = () => {
     return (
       <div
-        class={menuVariants(variantProps).positioner()}
+        class={mergedVariantSlotClasses("positioner")}
         {...api().getPositionerProps()}
       >
         <ul
-          class={menuVariants(variantProps).content()}
+          class={mergedVariantSlotClasses("content")}
           {...api().getContentProps()}
         >
           <For each={componentProps.items()}>
@@ -153,21 +162,17 @@ export function Menu(originalProps: MenuProps) {
 
               return (
                 <li
-                  class={menuVariants(variantProps).listItem()}
+                  class={mergedVariantSlotClasses("listItem")}
                   {...api().getItemProps(item)}
                 >
                   <Switch>
                     <Match when={item.anchorProps}>
                       <AWithState
                         {...item.anchorProps!}
-                        class={menuVariants(variantProps).item({
-                          class: [
-                            item.anchorProps!.class,
-                            variantProps.itemClass,
-                          ]
-                            .filter(Boolean)
-                            .join(" "),
-                        })}
+                        class={mergedVariantSlotClasses(
+                          "item",
+                          item.anchorProps!.class,
+                        )}
                       >
                         {({ isActive }) => (
                           <>
@@ -184,14 +189,10 @@ export function Menu(originalProps: MenuProps) {
                     <Match when={item.buttonProps}>
                       <button
                         {...item.buttonProps}
-                        class={menuVariants(variantProps).item({
-                          class: [
-                            item.buttonProps!.class,
-                            variantProps.itemClass,
-                          ]
-                            .filter(Boolean)
-                            .join(" "),
-                        })}
+                        class={mergedVariantSlotClasses(
+                          "item",
+                          item.buttonProps!.class,
+                        )}
                       >
                         <MenuItemIcon icon={item.icon} {...item.iconProps} />
                         <span>{item.displayText}</span>
@@ -201,9 +202,7 @@ export function Menu(originalProps: MenuProps) {
                       {item.component!({
                         ...item,
                         itemClassAccessor: () =>
-                          menuVariants(variantProps).item({
-                            class: variantProps.itemClass,
-                          }),
+                          mergedVariantSlotClasses("item"),
                       })}
                     </Match>
                   </Switch>
