@@ -36,6 +36,7 @@ export const menuVariants = tv({
       "bg-transparent text-popover-foreground text-base",
       "hover:bg-popover-foreground/5 focus:bg-popover-foreground/5 group-data-[highlighted]-bg-popover-foreground/5",
       "[&.active>svg]:text-accent",
+      "aria-disabled-(pointer-events-none opacity-50)",
     ],
   },
   variants: {
@@ -84,9 +85,10 @@ export type MenuItem = MenuItemCommonProps &
         anchorProps?: never;
         buttonProps?: never;
         component: (
-          props: MenuItemCommonProps & {
-            itemClassAccessor: Accessor<ClassValue>;
-          },
+          props: MenuItemCommonProps &
+            menu.ItemProps & {
+              itemClassAccessor: Accessor<ClassValue>;
+            },
         ) => JSX.Element;
       }
   );
@@ -158,13 +160,11 @@ export function Menu(originalProps: MenuProps) {
               };
 
               return (
-                <li
-                  class={mergedVariantSlotClasses("listItem")}
-                  {...api().getItemProps(item)}
-                >
+                <li class={mergedVariantSlotClasses("listItem")}>
                   <Switch>
                     <Match when={item.anchorProps}>
                       <AWithState
+                        {...api().getItemProps(item)}
                         {...item.anchorProps!}
                         class={mergedVariantSlotClasses(
                           "item",
@@ -185,11 +185,13 @@ export function Menu(originalProps: MenuProps) {
                     </Match>
                     <Match when={item.buttonProps}>
                       <button
+                        {...api().getItemProps(item)}
                         {...item.buttonProps}
                         class={mergedVariantSlotClasses(
                           "item",
                           item.buttonProps!.class,
                         )}
+                        disabled={item.disabled}
                       >
                         <MenuItemIcon icon={item.icon} {...item.iconProps} />
                         <span>{item.displayText}</span>
@@ -197,6 +199,7 @@ export function Menu(originalProps: MenuProps) {
                     </Match>
                     <Match when={item.component}>
                       {item.component!({
+                        ...api().getItemProps(item),
                         ...item,
                         itemClassAccessor: () =>
                           mergedVariantSlotClasses("item"),
