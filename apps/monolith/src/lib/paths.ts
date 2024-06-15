@@ -10,6 +10,8 @@ export const paths = {
     const a_root = `/a/${a_pid}`;
 
     return {
+      root: a_root,
+
       record: (r_pid: string) => {
         const r_root = `${a_root}/r/${r_pid}`;
 

@@ -1,13 +1,21 @@
-import { A, RouteSectionProps, action, useAction } from "@solidjs/router";
+import {
+  A,
+  RouteSectionProps,
+  action,
+  useAction,
+  useSubmission,
+} from "@solidjs/router";
 import { For, Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 import { AWithState } from "~/components/a-with-state";
 import { AppFooter } from "~/components/app-footer";
-import { Button } from "~/components/ui/button";
 import { Icon } from "~/components/ui/icon";
+import { Menu, MenuProps } from "~/components/ui/menu";
 
 import { useAuth } from "~/providers/authentication";
+
+import { paths } from "~/lib/paths";
 
 import * as AuthenticationService from "~/lib/api/authentication/authentication.service";
 
@@ -55,16 +63,65 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
 
               <Show when={actor()} fallback={<AuthNavigation />}>
                 {(() => {
-                  const triggerAction = useAction(signOutAction);
+                  const useSignOutAction = useAction(signOutAction);
+                  const signOutSubmission = useSubmission(signOutAction);
+
+                  const menuItemsAccessor: MenuProps["items"] = () => [
+                    {
+                      icon: {
+                        active: Icon.user.bold,
+                        inactive: Icon.user.outline,
+                      },
+                      displayText: "Profile",
+                      anchorProps: {
+                        href: paths.actor(actor()!.pid).root,
+                        end: true,
+                      },
+                    },
+                    {
+                      icon: signOutSubmission.pending
+                        ? Icon.spinner
+                        : Icon.logout.outline,
+                      iconProps: {
+                        classList: {
+                          "animate-spin": signOutSubmission.pending,
+                        },
+                      },
+                      displayText: "Sign out",
+                      buttonProps: { onClick: useSignOutAction },
+                    },
+                  ];
 
                   return (
-                    <nav>
-                      <ul>
-                        <li>
-                          <Button onClick={triggerAction}>Sign out</Button>
-                        </li>
-                      </ul>
-                    </nav>
+                    <Menu
+                      trigger={({ getTriggerProps }) => (
+                        <button
+                          {...getTriggerProps()}
+                          class="group flex gap-2.5 p-3 w-full rounded-full bg-transparent hover:bg-popover focus:bg-popover data-[state=open]:bg-popover"
+                        >
+                          {/* <Avatar
+                            fallback={getShortName(actor()!.name)}
+                            rootClass="border border-background"
+                          /> */}
+                          <div class="flex items-center justify-between w-full overflow-hidden">
+                            <div class="text-sm text-left mr-1 overflow-hidden">
+                              <strong class="font-semibold text-ellipsis overflow-hidden">
+                                {actor()!.name}
+                              </strong>
+                              <span class="block text-muted-foreground text-ellipsis overflow-hidden">
+                                @{actor()!.pid}
+                              </span>
+                            </div>
+
+                            <Icon.menuDots.bold class="shrink-0 ml-auto" />
+                          </div>
+                        </button>
+                      )}
+                      items={menuItemsAccessor}
+                      itemSize="2xl"
+                      containerSize="full"
+                      machineOptions={{ positioning: { placement: "top" } }}
+                    />
                   );
                 })()}
               </Show>
