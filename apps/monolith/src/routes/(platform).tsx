@@ -69,6 +69,8 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
                   const useSignOutAction = useAction(signOutAction);
                   const signOutSubmission = useSubmission(signOutAction);
 
+                  const p_actor = paths.actor(actor()!.pid);
+
                   const menuItemsAccessor: MenuProps["items"] = () => [
                     {
                       icon: {
@@ -76,10 +78,51 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
                         inactive: Icon.user.outline,
                       },
                       displayText: "Profile",
-                      anchorProps: {
-                        href: paths.actor(actor()!.pid).root,
-                        end: true,
+                      anchorProps: { href: p_actor.root, end: true },
+                    },
+                    {
+                      icon: {
+                        active: Icon.chat.dialog["2"].bold,
+                        inactive: Icon.chat.dialog["2"].outline,
                       },
+                      displayText: "Conversations",
+                      disabled: true,
+                      anchorProps: { href: p_actor.conversations() },
+                    },
+                    {
+                      icon: {
+                        active: Icon.bell.bold,
+                        inactive: Icon.bell.outline,
+                      },
+                      displayText: "Notifications",
+                      disabled: true,
+                      anchorProps: { href: p_actor.notifications },
+                    },
+                    {
+                      icon: {
+                        active: Icon.bookmark.bold,
+                        inactive: Icon.bookmark.outline,
+                      },
+                      displayText: "Bookmarks",
+                      disabled: true,
+                      anchorProps: { href: p_actor.bookmarks },
+                    },
+                    {
+                      icon: {
+                        active: Icon.cloud.bold,
+                        inactive: Icon.cloud.outline,
+                      },
+                      displayText: "Storage",
+                      disabled: true,
+                      anchorProps: { href: p_actor.storage },
+                    },
+                    {
+                      icon: {
+                        active: Icon.settings.bold,
+                        inactive: Icon.settings.outline,
+                      },
+                      displayText: "Settings",
+                      anchorProps: { href: p_actor.settings.root },
                     },
                     {
                       icon: signOutSubmission.pending
