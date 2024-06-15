@@ -10,6 +10,7 @@ import { Dynamic } from "solid-js/web";
 
 import { AWithState } from "~/components/a-with-state";
 import { AppFooter } from "~/components/app-footer";
+import { Avatar } from "~/components/ui/avatar";
 import { Icon } from "~/components/ui/icon";
 import { Menu, MenuProps } from "~/components/ui/menu";
 
@@ -18,6 +19,8 @@ import { useAuth } from "~/providers/authentication";
 import { paths } from "~/lib/paths";
 
 import * as AuthenticationService from "~/lib/api/authentication/authentication.service";
+
+import { fullNameToAvatarFallback } from "~/lib/utils/common";
 
 const signOutAction = action(async () => {
   "use server";
@@ -99,10 +102,10 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
                           {...getTriggerProps()}
                           class="group flex gap-2.5 p-3 w-full rounded-full bg-transparent hover:bg-popover focus:bg-popover data-[state=open]:bg-popover"
                         >
-                          {/* <Avatar
-                            fallback={getShortName(actor()!.name)}
+                          <Avatar
+                            fallback={fullNameToAvatarFallback(actor()!.name)}
                             rootClass="border border-background"
-                          /> */}
+                          />
                           <div class="flex items-center justify-between w-full overflow-hidden">
                             <div class="text-sm text-left mr-1 overflow-hidden">
                               <strong class="font-semibold text-ellipsis overflow-hidden">
