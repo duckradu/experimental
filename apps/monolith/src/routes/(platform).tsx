@@ -97,7 +97,7 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
 
 function PrimaryNavigation() {
   return (
-    <nav class="grid group/primary-nav">
+    <nav class="grid">
       <For each={usePrimaryNavigationItems()}>
         {(item) => <NavigationItem {...item} />}
       </For>
@@ -145,7 +145,7 @@ function usePrimaryNavigationItems(): NavigationLinkItemWithStateIcon[] {
 
 function AuthNavigation() {
   return (
-    <nav class="grid group/auth-nav">
+    <nav class="grid">
       <NavigationItem
         displayText="Sign in"
         href="/sign-in"
@@ -177,7 +177,7 @@ function NavigationItem(props: NavigationLinkItemWithStateIcon) {
               "text-accent": isActive(),
             }}
           />
-          <span class="pr-2 text-xl hidden opacity-0 transition-opacity lg:inline-flex group-hover/container:opacity-100">
+          <span class="pr-2 text-xl hidden opacity-0 transition-opacity lg:inline-flex group-hover:opacity-100">
             {props.displayText}
           </span>
         </div>
