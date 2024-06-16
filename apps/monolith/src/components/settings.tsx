@@ -5,7 +5,15 @@ export type SettingsSection = ComponentProps<"section">;
 
 export function SettingsSection(props: SettingsSection) {
   return (
-    <section {...props} class="grid gap-layout">
+    <section
+      {...props}
+      classList={{
+        "relative grid gap-layout": true,
+        "@7xl/settings_page:grid-cols-4 [&>header]:col-span-1 [&>div]:col-span-3":
+          true,
+        [props.class!]: Boolean(props.class?.length),
+      }}
+    >
       {props.children}
     </section>
   );

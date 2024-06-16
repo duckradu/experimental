@@ -16,10 +16,10 @@ export default function SettingsLayout(props: SettingsLayoutProps) {
   const isRootPath = () => /settings\/?$/.test(location.pathname);
 
   return (
-    <div class="@container/settings flex gap-layout h-screen py-layout">
+    <div class="@container/settings flex gap-layout min-h-screen">
       <aside
         classList={{
-          "@settings/nav": true,
+          "@container/nav relative": true,
           "w-full flex-col gap-layout shrink-0": true,
           "@2xl/settings-(w-full max-w-64)": true,
 
@@ -27,23 +27,27 @@ export default function SettingsLayout(props: SettingsLayoutProps) {
           "hidden @2xl/settings:flex": !isRootPath(),
         }}
       >
-        <SettingsHeader headingText="Settings" />
+        <div class="sticky top-0 left-0 right-0">
+          <div class="grid gap-layout py-layout">
+            <SettingsHeader headingText="Settings" />
 
-        <Separator />
+            <Separator />
 
-        <nav class="grid gap-1">
-          <For each={useSettingsNavigationItems()}>
-            {(item) => (
-              <A
-                href={item.href}
-                class="inline-flex hover:bg-muted @xl/nav:text-base text-sm p-2 rounded w-full"
-                activeClass="bg-muted font-semibold"
-              >
-                {item.displayText}
-              </A>
-            )}
-          </For>
-        </nav>
+            <nav class="grid gap-1">
+              <For each={useSettingsNavigationItems()}>
+                {(item) => (
+                  <A
+                    href={item.href}
+                    class="inline-flex hover:bg-muted @xl/nav:text-base text-sm p-2 rounded w-full"
+                    activeClass="bg-muted font-semibold"
+                  >
+                    {item.displayText}
+                  </A>
+                )}
+              </For>
+            </nav>
+          </div>
+        </div>
       </aside>
 
       <div
@@ -53,7 +57,11 @@ export default function SettingsLayout(props: SettingsLayoutProps) {
           "hidden @2xl/settings:block": isRootPath(),
         }}
       >
-        {props.children}
+        <div class="py-layout">
+          <div class="@container/settings_page flex flex-col gap-layout">
+            {props.children}
+          </div>
+        </div>
       </div>
     </div>
   );
