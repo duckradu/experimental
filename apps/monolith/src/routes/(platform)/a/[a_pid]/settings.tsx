@@ -1,5 +1,5 @@
 import { A, RouteSectionProps, useLocation } from "@solidjs/router";
-import { For } from "solid-js";
+import { For, createEffect, onCleanup } from "solid-js";
 
 import { SettingsHeader } from "~/components/settings";
 import { Separator } from "~/components/ui/separator";
@@ -8,12 +8,28 @@ import { useAuth } from "~/providers/authentication";
 
 import { paths } from "~/lib/paths";
 
+import { PLATFORM_CHILREN_WRAPPER_MAX_WIDTH } from "~/lib/constants/styles";
+
 export type SettingsLayoutProps = RouteSectionProps;
 
 export default function SettingsLayout(props: SettingsLayoutProps) {
   const location = useLocation();
 
   const isRootPath = () => /settings\/?$/.test(location.pathname);
+
+  // Temporary impl
+  createEffect(() => {
+    document.documentElement.style.setProperty(
+      `--${PLATFORM_CHILREN_WRAPPER_MAX_WIDTH}`,
+      "100%",
+    );
+
+    onCleanup(() => {
+      document.documentElement.style.removeProperty(
+        `--${PLATFORM_CHILREN_WRAPPER_MAX_WIDTH}`,
+      );
+    });
+  });
 
   return (
     <div class="@container/settings flex gap-layout min-h-screen">
