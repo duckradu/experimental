@@ -178,7 +178,7 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
 
       {/* Alternate between w-2xl and w-full */}
       <div class="w-full">
-        <div class="w-full max-w-2xl min-h-screen mx-auto">
+        <div class="w-full max-w-platform-children-container min-h-screen mx-auto">
           {props.children}
         </div>
       </div>

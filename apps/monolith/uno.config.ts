@@ -7,6 +7,8 @@ import {
 } from "unocss";
 import presetAnimations from "unocss-preset-animations";
 
+import { PLATFORM_CHILREN_WRAPPER_MAX_WIDTH } from "./src/lib/constants/styles";
+
 export default defineConfig({
   presets: [
     presetUno(),
@@ -124,6 +126,14 @@ export default defineConfig({
         }
 
         return { gap: theme.spacing.xs };
+      },
+    ],
+    [
+      /max-w-platform-children-container/,
+      (_, { theme }) => {
+        return {
+          "max-width": `var(--${PLATFORM_CHILREN_WRAPPER_MAX_WIDTH}, ${theme.maxWidth["2xl"]})`,
+        };
       },
     ],
   ],
