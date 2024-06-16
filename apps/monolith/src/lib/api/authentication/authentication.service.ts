@@ -19,7 +19,7 @@ export async function getSessionActor() {
 
   const actorId = session.data.actorId;
 
-  if (!actorId) {
+  if (actorId == null) {
     return null;
   }
 
