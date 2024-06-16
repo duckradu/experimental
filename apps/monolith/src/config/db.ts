@@ -1,6 +1,6 @@
 import { type Config } from "drizzle-kit";
 
-export default {
+const config = {
   out: "./src/migrations",
   dialect: "postgresql",
   schema: "./src/lib/api/**/*.schema.ts",
@@ -10,3 +10,12 @@ export default {
   verbose: true,
   strict: true,
 } satisfies Config;
+
+console.log("=====================================");
+console.log("DB URL:", config.dbCredentials);
+console.log("=====================================");
+console.log("ENV:", process.env.POSTGRES_USER);
+console.log("ENV:", process.env);
+console.log("=====================================");
+
+export default config;
