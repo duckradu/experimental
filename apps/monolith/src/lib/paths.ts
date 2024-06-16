@@ -40,6 +40,8 @@ export const paths = {
 
       settings: {
         root: `${a_root}/settings`,
+
+        appearance: `${a_root}/settings/appearance`,
       },
     };
   },
