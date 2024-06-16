@@ -6,6 +6,7 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "build-and-migrate": "pnpm build && pnpm db:migrate",
+    "build-and-prepare-temp": "pnpm build && pnpm db:push && pnpm db:seed",
     "start": "vinxi start",
     "version": "vinxi version",
     "db:check": "drizzle-kit check --config=src/config/db.ts",
