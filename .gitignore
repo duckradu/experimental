@@ -6,7 +6,6 @@ dist
 .solid
 
 # Environment
-.env
 .env.local
 
 # System Files
