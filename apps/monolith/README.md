@@ -47,6 +47,7 @@ Remember to update the schemas barrel import file `(src/lib/db/schema.ts)` whene
 ## TODO
 
 - [ ] Add .env validation to prevent app from building
+- [ ] Add instructions about env vars when deploying
 - [ ] Figure out why local prettier config isn't taken into account
 - [ ] Figure out why prettier plugin `importOrder` isn't triggering
 - [ ] Add prettier as a devDep & run it on `lint-staged`
