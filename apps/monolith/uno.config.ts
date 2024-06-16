@@ -113,5 +113,18 @@ export default defineConfig({
         }
       },
     ],
+    [
+      /^gap(-(x|y|col|row))?-layout$/,
+      ([, dir], { theme }) => {
+        if (["-x", "-col"].includes(dir)) {
+          return { "column-gap": theme.spacing.xs };
+        }
+        if (["-y", "-row"].includes(dir)) {
+          return { "row-gap": theme.spacing.xs };
+        }
+
+        return { gap: theme.spacing.xs };
+      },
+    ],
   ],
 });
