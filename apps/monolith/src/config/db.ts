@@ -5,7 +5,7 @@ const config = {
   dialect: "postgresql",
   schema: "./src/lib/api/**/*.schema.ts",
   dbCredentials: {
-    url: `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.POSTGRES_DB}`,
+    url: process.env.DATABASE_URL!, // :(
   },
   verbose: true,
   strict: true,
@@ -17,5 +17,6 @@ console.log("=====================================");
 console.log("ENV:", process.env.POSTGRES_USER);
 console.log("ENV:", process.env);
 console.log("=====================================");
+console.log(process.env.DATABASE_URL);
 
 export default config;
