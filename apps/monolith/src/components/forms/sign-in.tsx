@@ -71,7 +71,7 @@ const signInAction = action(async (payload: SignInSchemaInput) => {
 
   const session = await AuthenticationService.getSession();
 
-  session.update({ actorId: matchingActor.id });
+  await session.update({ actorId: matchingActor.id });
 
   if (redirectTo?.length) {
     throw redirect(redirectTo);
