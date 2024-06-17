@@ -11,10 +11,10 @@
     "version": "vinxi version",
     "db:check": "drizzle-kit check --config=src/config/db.ts",
     "db:generate": "drizzle-kit generate --config=src/config/db.ts",
-    "db:generate:schema-barrel": "node --import tsx --env-file .env ./scripts/generate-db-schema-barrel.ts",
-    "db:migrate": "node --import tsx --env-file .env ./src/lib/db/migrate.ts",
+    "db:generate:schema-barrel": "touch .env && node --import tsx --env-file .env ./scripts/generate-db-schema-barrel.ts",
+    "db:migrate": "touch .env && node --import tsx --env-file .env ./src/lib/db/migrate.ts",
     "db:push": "drizzle-kit push --config=src/config/db.ts",
-    "db:seed": "node --import tsx --env-file .env ./src/lib/db/seed.ts",
+    "db:seed": "touch .env && node --import tsx --env-file .env ./src/lib/db/seed.ts",
     "db:drop": "drizzle-kit drop --config=src/config/db.ts",
     "db:studio": "drizzle-kit studio --config=src/config/db.ts"
   },
