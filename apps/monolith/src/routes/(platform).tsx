@@ -48,7 +48,7 @@ export default function PlatformLayout(props: PlatformLayoutProps) {
         "[&>aside>div>div>div]-(flex flex-col grow-1 justify-between gap-2)":
           true,
 
-        "[&>div>div]:px-layout": true,
+        // "[&>div>div]:px-layout": true,
       }}
     >
       <aside class="w-64">
