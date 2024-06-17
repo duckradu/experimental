@@ -18,6 +18,19 @@ export const appConfig = {
     .root,
 };
 
-export const sessionConfig = {
-  password: process.env.SESSION_SECRET,
-} as SessionConfig;
+export const sessionConfig: SessionConfig = {
+  cookie: {
+    // domain?: string | undefined
+    // encode?: (value: string) => string
+    // expires?: Date | undefined
+    httpOnly: true,
+    // maxAge?: number | undefined
+    path: "/",
+    // priority?: "low" | "medium" | "high" | undefined
+    sameSite: "lax",
+    secure: true,
+  },
+  password: process.env.SESSION_SECRET!,
+  // maxAge?: number | undefined used to set `expires` on cookie
+  // name: SESSION_COOKIE_NAME,
+};
