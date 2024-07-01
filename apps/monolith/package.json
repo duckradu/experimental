@@ -26,6 +26,8 @@
     "@solidjs/start": "^1.0.1",
     "@unocss/reset": "^0.60.3",
     "@zag-js/avatar": "^0.57.0",
+    "@zag-js/color-picker": "^0.57.0",
+    "@zag-js/core": "^0.57.0",
     "@zag-js/menu": "^0.57.0",
     "@zag-js/solid": "^0.57.0",
     "argon2": "^0.40.3",
@@ -38,7 +40,8 @@
     "solid-js": "^1.8.17",
     "tailwind-variants": "^0.2.1",
     "valibot": "^0.31.1",
-    "vinxi": "^0.3.11"
+    "vinxi": "^0.3.11",
+    "xstate": "^5.14.0"
   },
   "devDependencies": {
     "@iconify-json/solar": "^1.1.9",
