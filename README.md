@@ -24,3 +24,6 @@ Run `pnpm install` at the root of the monorepo (where this README.md is located)
 ### Commands
 
 - `build:web` & `start:web` are available when deploying the monorepo. Note that the `build:web` command will also apply database migrations when run.
+
+### TODO
+- [ ] Config prettier & setup import order plugin
