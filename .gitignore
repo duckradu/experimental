@@ -4,10 +4,21 @@ node_modules
 # Build files
 dist
 .solid
+.output
+.vercel
+.netlify
+.vinxi
 
 # Environment
 .env
 .env.local
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.launch
+.settings/
 
 # System Files
 .DS_Store
