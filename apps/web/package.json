@@ -4,19 +4,38 @@
   "version": "0.0.0",
   "author": "radu.dascalu@pm.me",
   "scripts": {
+    "pre-commit": "pnpm generate:schema-barrel",
     "dev": "vinxi dev",
     "build": "vinxi build",
-    "start": "vinxi start"
+    "build-and-migrate": "pnpm build && pnpm db:migrate",
+    "build-and-migrate-and-seed": "pnpm build && pnpm db:migrate && pnpm db:seed",
+    "start": "vinxi start",
+    "version": "vinxi version",
+    "db:check": "drizzle-kit check --config=src/config/db.ts",
+    "db:generate": "drizzle-kit generate --config=src/config/db.ts",
+    "db:migrate": "touch .env && node --import tsx --env-file .env ./src/lib/db/migrate.ts",
+    "db:push": "drizzle-kit push --config=src/config/db.ts",
+    "db:seed": "touch .env && node --import tsx --env-file .env ./src/lib/db/seed.ts",
+    "db:drop": "drizzle-kit drop --config=src/config/db.ts",
+    "db:studio": "drizzle-kit studio --config=src/config/db.ts",
+    "generate:schema-barrel": "touch .env && node --import tsx --env-file .env ./scripts/generate-db-schema-barrel.ts"
   },
   "dependencies": {
     "@solidjs/start": "^1.0.4",
     "@unocss/reset": "^0.61.4",
+    "dotenv": "^16.4.5",
+    "dotenv-expand": "^11.0.6",
+    "drizzle-orm": "^0.32.0",
+    "postgres": "^3.4.4",
     "solid-js": "^1.8.18",
     "vinxi": "^0.3.14"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.23.0",
+    "glob": "^11.0.0",
     "prettier": "^3.3.3",
     "solid-devtools": "^0.30.1",
+    "tsx": "^4.16.2",
     "unocss": "^0.61.4"
   }
 }

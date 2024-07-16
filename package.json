@@ -7,6 +7,8 @@
   "scripts": {
     "prepare": "node .husky/install.mjs",
     "preinstall": "npx only-allow pnpm",
+    "build:web": "pnpm --filter web build-and-migrate",
+    "start:web": "pnpm --filter web start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
