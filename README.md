@@ -6,12 +6,21 @@ Sprout is a boilerplate monorepo build using `pnpm`.
 
 ### Global dependencies
 
-- node (>= 20)
+- [nodejs](https://nodejs.org/) (>= 20)
 - [pnpm](https://pnpm.io/installation)
-- Docker
+- [docker-compose](https://www.docker.com/)
 
-### Install dependencies
+### Install monorepo dependencies
 
 Run `pnpm install` at the root of the monorepo (where this README.md is located).
 
-<!-- TODO: Deploy instructions -->
+### This monorepo has the following tools installed:
+
+- [husky](https://typicode.github.io/husky/) with a `pre-commit` hook with some basic config
+- [lint-staged](https://github.com/lint-staged/lint-staged) - should be configured for each individual project inside `/apps`
+
+> There's a `preinstall` script that will only allow `pnpm` since this is a pnpm monorepo.
+
+### Commands
+
+- `build:web` & `start:web` are available when deploying the monorepo. Note that the `build:web` command will also apply database migrations when run.
