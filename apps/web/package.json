@@ -21,6 +21,8 @@
     "generate:schema-barrel": "touch .env && node --import tsx --env-file .env ./scripts/generate-db-schema-barrel.ts"
   },
   "dependencies": {
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.14.1",
     "@solidjs/start": "^1.0.4",
     "@unocss/reset": "^0.61.4",
     "dotenv": "^16.4.5",
