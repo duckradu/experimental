@@ -1,0 +1,4 @@
+{
+  "unocss.root": "apps/web",
+  "unocss.autocomplete.matchType": "fuzzy"
+}

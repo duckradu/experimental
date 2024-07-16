@@ -10,7 +10,12 @@
   },
   "dependencies": {
     "@solidjs/start": "^1.0.4",
+    "@unocss/reset": "^0.61.4",
     "solid-js": "^1.8.18",
     "vinxi": "^0.3.14"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "unocss": "^0.61.4"
   }
 }
