@@ -1,0 +1,16 @@
+{
+  "name": "@sprout/web",
+  "type": "module",
+  "version": "0.0.0",
+  "author": "radu.dascalu@pm.me",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
+  },
+  "dependencies": {
+    "@solidjs/start": "^1.0.4",
+    "solid-js": "^1.8.18",
+    "vinxi": "^0.3.14"
+  }
+}
