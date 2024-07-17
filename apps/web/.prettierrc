@@ -18,6 +18,7 @@
     "~/lib/api/*",
     "~/lib/utils/*",
     "~/config/*",
+    "~/types",
     "~/styles/(.*).css",
     "^[./]"
   ],
