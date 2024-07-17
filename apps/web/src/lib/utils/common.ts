@@ -30,3 +30,29 @@ export function to<T, U = Error>(
       return [err, undefined];
     });
 }
+
+export const createMergedVariantSlotClasses =
+  <
+    TVArg extends Record<string, ClassValue>,
+    TV extends (
+      arg: TVArg,
+    ) => Record<string, (args: { class: ClassValue }) => string>,
+  >(
+    tv: TV,
+    tvArg: TVArg,
+  ) =>
+  (slotKey: keyof ReturnType<TV>, extendClass?: ClassValue) =>
+    tv(tvArg)[slotKey as string]({
+      class: [tvArg[`${slotKey as string}Class`], extendClass],
+    });
+
+export function fullNameToAvatarFallback(fullName: string | null) {
+  if (!fullName?.length) {
+    return "";
+  }
+
+  return fullName
+    .split(" ")
+    .map(([s]) => s)
+    .join("");
+}
