@@ -1,4 +1,4 @@
-# @sprout/web
+# @kameleon/web
 
 ## Local setup
 
