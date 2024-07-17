@@ -1,0 +1,25 @@
+{
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "@unocss/reset/tailwind-compat.css",
+    "virtual:uno.css",
+    "~/components/.*",
+    "~/providers/*",
+    "~/lib/validation-schemas.ts",
+    "~/lib/db",
+    "~/lib/api/*",
+    "~/lib/utils/*",
+    "~/config/*",
+    "~/styles/(.*).css",
+    "^[./]"
+  ],
+  "importOrderSeparation": true
+}

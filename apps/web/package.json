@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.228",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "drizzle-kit": "^0.23.0",
     "glob": "^11.0.0",
     "prettier": "^3.3.3",
