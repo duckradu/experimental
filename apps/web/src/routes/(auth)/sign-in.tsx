@@ -6,7 +6,7 @@ import { Icon } from "~/components/ui/icon";
 
 import { useAuth } from "~/providers/authentication";
 
-export default function SignIn() {
+export default function SignInPage() {
   const { actor } = useAuth();
 
   if (actor()) {
