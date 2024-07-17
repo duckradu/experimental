@@ -18,7 +18,7 @@ export default function App() {
     <Router
       root={(props) => (
         <MetaProvider>
-          <Title>Sprout</Title>
+          <Title />
           <Suspense>
             <AuthenticationProvider>{props.children}</AuthenticationProvider>
           </Suspense>
