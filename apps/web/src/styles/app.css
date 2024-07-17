@@ -1,0 +1,81 @@
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+
+  --muted: 0 0% 92%;
+  --muted-foreground: 0 0% 50%;
+
+  /* TODO: Use for <Record />? */
+  /* --card: */
+  /* --card-foreground: */
+
+  --popover: var(--muted);
+  --popover-foreground: var(--foreground);
+
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--muted-foreground);
+
+  --brand: 273 100% 50%;
+  --brand-foreground: var(--background);
+
+  --accent: var(--brand);
+  --accent-foreground: var(--brand-foreground);
+
+  --destructive: 0 98% 44%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: var(--muted);
+  --input: var(--muted);
+
+  --ring: var(--accent);
+
+  --radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --muted: 0 0% 8%;
+
+    --brand-foreground: var(--foreground);
+
+    --destructive: 0 98% 34%;
+  }
+}
+
+@layer default {
+  @supports (-webkit-touch-callout: none) {
+    .h-screen {
+      height: -webkit-fill-available;
+    }
+  }
+}
+
+body {
+  @apply bg-background text-foreground;
+  @apply font-sans antialiased;
+}
+
+body {
+  &,
+  & * {
+    @apply transition-property-colors transition-duration-150 transition-ease-in-out;
+  }
+}
+
+#app {
+  @apply min-w-screen min-h-screen;
+}
+
+/* * {
+  @apply border-border !ring-ring;
+}
+ */
+
+*:focus {
+  @apply focus-(outline-none ring-2 ring-ring ring-offset-2 ring-offset-background);
+}

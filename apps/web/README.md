@@ -48,6 +48,24 @@ When creating new `src/lib/api/**/*.schem.ts` files in development you need to u
 
 This command will automatically be triggered by the pre-commit hook.
 
+### Creating an `enum` in drizzle
+
+When creating new `Enum`'s in the drizzle schemas, use the `enum2pg` util like so:
+
+```typescript
+import { enum2pg } from "~/lib/utils/db";
+
+export enum SettingsDataType {
+  ALPHANUMERIC = "alphanumeric",
+  INTEGER = "integer",
+}
+
+export const settingDataTypeEnum = pgEnum(
+  "settingDataTypeEnum",
+  enum2pg(SettingsDataType),
+);
+```
+
 ### Suggested app structure
 
 ```
