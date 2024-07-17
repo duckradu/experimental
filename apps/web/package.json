@@ -28,6 +28,7 @@
     "@solidjs/start": "^1.0.4",
     "@unocss/reset": "^0.61.4",
     "argon2": "^0.40.3",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
     "drizzle-orm": "^0.32.0",
