@@ -14,7 +14,7 @@ export default defineConfig({
       provider: "bunny",
       fonts: {
         sans: {
-          name: "Noto Sans",
+          name: "Public Sans",
           weights: ["400", "500", "600", "700", "800", "900"],
         },
       },
