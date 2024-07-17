@@ -13,7 +13,7 @@
     "virtual:uno.css",
     "~/components/.*",
     "~/providers/*",
-    "~/lib/validation-schemas.ts",
+    "~/lib/(validation-schemas|paths)",
     "~/lib/db",
     "~/lib/api/*",
     "~/lib/utils/*",
@@ -21,5 +21,7 @@
     "~/styles/(.*).css",
     "^[./]"
   ],
-  "importOrderSeparation": true
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true
 }
