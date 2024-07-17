@@ -1,6 +1,4 @@
-# Sprout
-
-Sprout is a boilerplate monorepo build using `pnpm`.
+# Kameleon Monorepo
 
 ## Local setup
 
@@ -26,4 +24,4 @@ Run `pnpm install` at the root of the monorepo (where this README.md is located)
 - `build:web` & `start:web` are available when deploying the monorepo. Note that the `build:web` command will also apply database migrations when run.
 
 ### TODO
-- [ ] Config prettier & setup import order plugin
+- [ ] Add deploy instructions
