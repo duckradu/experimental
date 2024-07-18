@@ -16,6 +16,8 @@ import { Menu } from "~/components/ui/menu";
 
 import { useAuth } from "~/providers/authentication";
 
+import { paths } from "~/lib/paths";
+
 import * as AuthenticationService from "~/lib/api/authentication/authentication.service";
 
 import { fullNameToAvatarFallback } from "~/lib/utils/common";
@@ -122,68 +124,73 @@ function ActorNavigation() {
   const useSignOutAction = useAction(signOutAction);
   const signOutSubmission = useSubmission(signOutAction);
 
-  const navigationItemsAccessor = () => [
-    {
-      icon: {
-        active: Icon.user.bold,
-        inactive: Icon.user.outline,
+  const navigationItemsAccessor = () => {
+    const p_actor = paths.actor(actor()!.pid);
+
+    return [
+      {
+        icon: {
+          active: Icon.user.bold,
+          inactive: Icon.user.outline,
+        },
+        displayText: "Profile",
+        anchorProps: { href: p_actor.root, end: true },
       },
-      displayText: "Profile",
-      anchorProps: { href: " p_actor.root", end: true },
-    },
-    {
-      icon: {
-        active: Icon.chat.dialog["2"].bold,
-        inactive: Icon.chat.dialog["2"].outline,
+      {
+        icon: {
+          active: Icon.chat.dialog["2"].bold,
+          inactive: Icon.chat.dialog["2"].outline,
+        },
+        displayText: "Conversations",
+        disabled: true,
+        anchorProps: { href: p_actor.conversations().root },
       },
-      displayText: "Conversations",
-      disabled: true,
-      anchorProps: { href: "p_actor.conversations()" },
-    },
-    {
-      icon: {
-        active: Icon.bell.bold,
-        inactive: Icon.bell.outline,
+      {
+        icon: {
+          active: Icon.bell.bold,
+          inactive: Icon.bell.outline,
+        },
+        displayText: "Notifications",
+        disabled: true,
+        anchorProps: { href: p_actor.notifications },
       },
-      displayText: "Notifications",
-      disabled: true,
-      anchorProps: { href: "p_actor.notifications" },
-    },
-    {
-      icon: {
-        active: Icon.bookmark.bold,
-        inactive: Icon.bookmark.outline,
+      {
+        icon: {
+          active: Icon.bookmark.bold,
+          inactive: Icon.bookmark.outline,
+        },
+        displayText: "Bookmarks",
+        disabled: true,
+        anchorProps: { href: p_actor.bookmarks },
       },
-      displayText: "Bookmarks",
-      disabled: true,
-      anchorProps: { href: "p_actor.bookmarks" },
-    },
-    {
-      icon: {
-        active: Icon.cloud.bold,
-        inactive: Icon.cloud.outline,
+      {
+        icon: {
+          active: Icon.cloud.bold,
+          inactive: Icon.cloud.outline,
+        },
+        displayText: "Storage",
+        disabled: true,
+        anchorProps: { href: p_actor.storage },
       },
-      displayText: "Storage",
-      disabled: true,
-      anchorProps: { href: "p_actor.storage" },
-    },
-    {
-      icon: {
-        active: Icon.settings.bold,
-        inactive: Icon.settings.outline,
+      {
+        icon: {
+          active: Icon.settings.bold,
+          inactive: Icon.settings.outline,
+        },
+        displayText: "Settings",
+        disabled: true,
+        anchorProps: { href: p_actor.settings().root },
       },
-      displayText: "Settings",
-      anchorProps: { href: "p_actor.settings.root" },
-    },
-    {
-      icon: signOutSubmission.pending ? Icon.spinner : Icon.logout.outline,
-      iconProps: {
-        classList: { "animate-spin": signOutSubmission.pending },
+      {
+        icon: signOutSubmission.pending ? Icon.spinner : Icon.logout.outline,
+        iconProps: {
+          classList: { "animate-spin": signOutSubmission.pending },
+        },
+        displayText: "Sign out",
+        buttonProps: { onClick: useSignOutAction },
       },
-      displayText: "Sign out",
-      buttonProps: { onClick: useSignOutAction },
-    },
-  ];
+    ];
+  };
 
   return (
     <Menu
