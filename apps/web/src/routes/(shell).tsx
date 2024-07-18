@@ -58,8 +58,18 @@ export default function ShellLayout(props: ShellLayoutProps) {
         </div>
       </header>
 
-      <main class="p-layout flex justify-center w-full ml-64">
-        <div class="max-w-5xl w-full">{props.children}</div>
+      <main
+        classList={{
+          "ml-64": true,
+
+          // It's ugly I know
+          "has-[div:not(.not-default-container)]:flex": true,
+          "has-[div:not(.not-default-container)]:flex-col": true,
+          "has-[div:not(.not-default-container)]:items-center": true,
+          "has-[div:not(.not-default-container)]:w-full": true,
+        }}
+      >
+        {props.children}
       </main>
     </div>
   );

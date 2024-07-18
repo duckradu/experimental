@@ -1,3 +1,7 @@
 export default function HomePage() {
-  return <h1>Hello world!</h1>;
+  return (
+    <div class="max-w-5xl w-full">
+      <h1>Hello World!</h1>
+    </div>
+  );
 }
