@@ -79,7 +79,7 @@ function NavigationItem(props: NavigationLinkItemWithStateIcon) {
   return (
     <AWithState
       href={props.href}
-      class="flex py-1 rounded-full group"
+      class="flex rounded-full group"
       activeClass="font-semibold"
       end
     >
@@ -103,7 +103,7 @@ function PrimaryNavigation() {
   const navigationItems = usePrimaryNavigationItems();
 
   return (
-    <nav class="grid">
+    <nav class="grid gap-2">
       <For each={navigationItems}>{NavigationItem}</For>
     </nav>
   );
@@ -113,7 +113,7 @@ function AuthNavigation() {
   const location = useLocation();
 
   return (
-    <nav class="grid">
+    <nav class="grid gap-2">
       <NavigationItem
         displayText="Sign in"
         href={`/sign-in?redirect-to=${location.pathname}`}
